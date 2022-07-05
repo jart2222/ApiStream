@@ -1,13 +1,20 @@
 package org.aguzman.api.stream.ejemplos;
 
+import java.io.InputStream;
+import java.util.IntSummaryStatistics;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class EjemploStreamRange {
     public static void main(String[] args) {
-        Stream<Integer> nombres = Stream.of(5,10,15,20)
-                .distinct();
-
-        int resultado=nombres.reduce(0, Integer::sum);
-        System.out.println(resultado);
+        IntStream num= IntStream.range(5,20).peek(System.out::println);
+        //int resultado=nombres.reduce(0,Integer::sum);
+        //int resultado=num.sum();
+        IntSummaryStatistics stats=num.summaryStatistics();
+        System.out.println("max: "+stats.getMax());
+        System.out.println("min: "+stats.getMin());
+        System.out.println("sum: "+stats.getSum());
+        System.out.println("promedio: "+stats.getAverage());
+        System.out.println("total: "+stats.getCount());
     }
 }
